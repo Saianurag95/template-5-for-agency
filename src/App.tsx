@@ -6,7 +6,7 @@ import ScrollReveal from "./components/ScrollReveal";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <ScrollReveal />
       <Navbar />
       <Routes>
