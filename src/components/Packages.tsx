@@ -52,6 +52,7 @@ export default function Packages() {
               {/* Price */}
               <div className="mb-2">
                 <span className="text-[40px] font-bold text-white leading-none">{pkg.price}</span>
+                {"hostingPrice" in pkg && <span className="block text-xs font-semibold text-cyan-200 mt-2">{pkg.hostingPrice}</span>}
               </div>
               <div className="text-stone-500 text-xs tracking-wide mb-3">
                 Delivery: <span className="text-stone-400">{pkg.delivery}</span>
@@ -88,7 +89,7 @@ export default function Packages() {
         </div>
 
         <p className="text-center text-stone-700 text-[11px] mt-6">
-          Demo pricing. Final quote confirmed during project intake. Prices in Indian Rupees (INR).
+          Demo pricing. Add Rs 500 to Rs 900 if we arrange domain and hosting. Payment is online-only through Razorpay.
         </p>
       </div>
     </section>

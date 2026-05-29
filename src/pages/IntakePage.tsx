@@ -267,6 +267,7 @@ function Step9({ form, setForm }: { form: FormState; setForm: React.Dispatch<Rea
             )}
             <div className={`text-[10px] font-semibold tracking-[0.2em] uppercase mb-2 ${form.selectedPackage === pkg.id ? "text-gold-500" : "text-stone-600"}`}>{pkg.name}</div>
             <div className="text-white text-2xl font-bold mb-1">{pkg.price}</div>
+            {"hostingPrice" in pkg && <div className="text-cyan-200 text-xs font-semibold mb-2">{pkg.hostingPrice}</div>}
             <div className="text-stone-600 text-[11px] mb-4">{pkg.delivery}</div>
             <ul className="space-y-1.5">
               {pkg.features.slice(0, 4).map((feat) => (
@@ -287,9 +288,9 @@ function Step10({ form, setForm }: { form: FormState; setForm: React.Dispatch<Re
   const f = (k: keyof FormState) => (v: string) => setForm(p => ({ ...p, [k]: v }));
   const pkg = packages.find(p => p.id === form.selectedPackage);
   const confirmOpts = [
-    "I understand the demo pricing and will confirm final terms with the team",
-    "I have already paid / made the advance payment",
-    "I am ready to proceed and will pay on invoice",
+    "I understand payment is online-only through Razorpay",
+    "I understand only Razorpay online payment is accepted",
+    "I am ready to complete online payment after submitting this intake",
   ];
   return (
     <div className="flex flex-col gap-7">
@@ -301,10 +302,11 @@ function Step10({ form, setForm }: { form: FormState; setForm: React.Dispatch<Re
               <div>
                 <div className="text-stone-300 text-sm font-medium">{pkg.name} Package</div>
                 <div className="text-stone-600 text-xs mt-0.5">Delivery: {pkg.delivery}</div>
+                {"hostingPrice" in pkg && <div className="text-stone-400 text-xs mt-1">{pkg.hostingPrice}</div>}
               </div>
               <div className="text-2xl font-bold text-white">{pkg.price}</div>
             </div>
-            <p className="text-stone-700 text-[11px] mt-4">Payment details and milestones will be confirmed by the team after reviewing your intake brief. This is a demo confirmation step.</p>
+            <p className="text-stone-700 text-[11px] mt-4">Payment is online-only through Razorpay. Add Rs 500 to Rs 900 if we arrange domain and hosting.</p>
           </>
         ) : (
           <p className="text-stone-600 text-[13px]">No package selected — go back to Step 9 to choose a package.</p>

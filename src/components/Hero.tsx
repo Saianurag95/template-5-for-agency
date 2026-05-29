@@ -140,7 +140,7 @@ export default function Hero() {
 
               {/* Price badge */}
               <div className="absolute top-4 left-10 bg-gold-500 text-stone-950 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                From Rs 6,000
+                From Rs 6,000 / Rs 6,500 with domain + hosting
               </div>
             </div>
           </div>
