@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import PaymentConfirmation from "./components/PaymentConfirmation";
 import HomePage from "./pages/HomePage";
 import IntakePage from "./pages/IntakePage";
 import ScrollReveal from "./components/ScrollReveal";
@@ -12,6 +13,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/intake" element={<IntakePage />} />
+        <Route path="/payment-confirmation" element={<PaymentConfirmation />} />
       </Routes>
     </BrowserRouter>
   );

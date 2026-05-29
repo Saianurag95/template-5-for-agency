@@ -18,6 +18,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { demoTemplates, packages } from "../data/agency";
+import { submitIntakeWithRazorpay } from "../payments/razorpay";
 
 // ─── Step metadata ────────────────────────────────────────────────
 const STEPS = [
@@ -390,6 +391,19 @@ export default function IntakePage() {
 
   const meta = STEPS[currentStep - 1];
   const StepIcon = meta.icon;
+  const handlePaymentSubmit = () => {
+    const selectedPkg = packages.find((pkg) => pkg.id === form.selectedPackage);
+    submitIntakeWithRazorpay({
+      templateId: form.templateId || "AG-CREATIVE-05",
+      formData: form as unknown as Record<string, unknown>,
+      packageName: selectedPkg?.name || form.selectedPackage || "Starter",
+      packagePrice: selectedPkg?.price,
+      customerName: form.clientName,
+      customerEmail: form.email,
+      customerPhone: form.phone,
+      businessName: form.businessName,
+    }).catch(() => setSubmitted(true));
+  };
 
   if (submitted) {
     const pkg = packages.find(p => p.id === form.selectedPackage);
@@ -515,10 +529,10 @@ export default function IntakePage() {
           ) : (
             <button
               type="button"
-              onClick={() => setSubmitted(true)}
+              onClick={handlePaymentSubmit}
               className="flex items-center gap-2 bg-gold-500 hover:bg-gold-400 text-stone-950 font-semibold text-[13px] px-7 py-3 rounded-sm transition-all hover:shadow-[0_0_25px_rgba(201,168,76,0.2)]"
             >
-              Submit Project Brief <Check className="w-4 h-4" />
+              Pay with Razorpay <Check className="w-4 h-4" />
             </button>
           )}
         </div>
